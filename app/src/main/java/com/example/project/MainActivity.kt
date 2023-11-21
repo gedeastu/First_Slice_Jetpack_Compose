@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -44,8 +45,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
             ProjectTheme {
+                val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -59,8 +60,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>, number:Array<Int>) {
-
+fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>) {
+    val items = (1..3).map { "SISTEM BASIS DATA $it" }
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)){
@@ -102,20 +103,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>, nu
             Spacer(modifier = Modifier.height(10.dp))
             Column(modifier) {
                 Text(modifier = Modifier.padding(vertical = 20.dp), text = "Jadwal Kuliah Hari ini", color = Color.Black, fontWeight = FontWeight.SemiBold)
-                Row(modifier = Modifier
+                LazyRow(modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
                     .horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-                    (list).forEach{item ->
+                    items(items.size){index ->
                         Column(modifier = Modifier
                             .width(300.dp)
                             .padding(end = 10.dp)
                             .clip(RoundedCornerShape(15.dp))
                             .height(150.dp)
                             .background(color = Color(android.graphics.Color.parseColor("#D32B28")))
-                            .padding(vertical = 10.dp, horizontal = 15.dp)
-                        ) {
-                            Text(text = "${ if(name === "Gede Astu")item else null}", fontWeight = FontWeight.SemiBold, color = Color.White)
+                            .padding(vertical = 10.dp, horizontal = 15.dp)) {
+                            Text(text = "${ if(name === "Gede Astu")items[index] else null}", fontWeight = FontWeight.SemiBold, color = Color.White)
                         }
                     }
 
@@ -129,9 +129,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>, nu
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    val numberList = arrayOf(1,2);
     val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
     ProjectTheme {
-        Greeting("Gede Astu",list = items, number = numberList)
+        Greeting("Gede Astu",list = items)
     }
 }
