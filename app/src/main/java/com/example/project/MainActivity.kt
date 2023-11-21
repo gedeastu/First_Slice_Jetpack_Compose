@@ -46,13 +46,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ProjectTheme {
-                val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
+                //val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Gede Astu", list = items)
+                    Greeting("Gede Astu",
+                        //list = items
+                    )
                 }
             }
         }
@@ -60,7 +62,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>) {
+fun Greeting(name: String,
+             modifier: Modifier = Modifier,
+             //list:Array<String>
+) {
     val items = (1..3).map { "SISTEM BASIS DATA $it" }
     Box(modifier = Modifier
         .fillMaxSize()
@@ -129,8 +134,10 @@ fun Greeting(name: String, modifier: Modifier = Modifier, list:Array<String>) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
+    //val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
     ProjectTheme {
-        Greeting("Gede Astu",list = items)
+        Greeting("Gede Astu",
+            //list = items
+        )
     }
 }
