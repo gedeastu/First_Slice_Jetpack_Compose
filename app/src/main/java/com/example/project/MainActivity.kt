@@ -45,14 +45,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val items = arrayOf("SISTEM BASIS DATA 1","SISTEM BASIS DATA 2","SISTEM BASIS DATA 1")
-            val numberList = arrayOf(1,2);
             ProjectTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Gede Astu", list = items, number = numberList)
+                    Greeting("Gede Astu", list = items)
                 }
             }
         }
