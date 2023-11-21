@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,7 +20,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -66,7 +64,7 @@ fun Greeting(name: String,
              modifier: Modifier = Modifier,
              //list:Array<String>
 ) {
-    val items = (1..3).map { "SISTEM BASIS DATA $it" }
+    val items = (1..2).map { "SISTEM BASIS DATA $it" }
     Box(modifier = Modifier
         .fillMaxSize()
         .background(Color.White)){
@@ -111,7 +109,8 @@ fun Greeting(name: String,
                 LazyRow(modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentHeight()
-                    .horizontalScroll(rememberScrollState()), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                    //.horizontalScroll(rememberScrollState())
+                    , verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                     items(items.size){index ->
                         Column(modifier = Modifier
                             .width(300.dp)
